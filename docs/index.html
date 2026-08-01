@@ -3,48 +3,80 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>CherryBot — Sorry, Cherry</title>
-  <link rel="stylesheet" href="/styles.css">
+  <title>I'm So Sorry, My Cherry 🍒</title>
+
+  <!-- Fonts: modern + handwritten -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="emoji-bg" aria-hidden="true"></div>
+  <!-- Soft floating particles background (🍒 💖 ✨) -->
+  <div class="particle-bg" aria-hidden="true"></div>
 
-  <main class="card">
-    <header>
-      <h1>🍒 CherryBot — Apology v1.1</h1>
-      <p class="subtitle">Hello Cherry — I lost my cool and I'm sorry. This patch is from vansh.</p>
+  <main class="wrap">
+    <header class="hero">
+      <h1 class="title">I'm So Sorry, My Cherry 🍒</h1>
+      <p class="subtitle">I lost my cool, but you hold my heart. You're my absolute favorite person in the entire world, and I want to make things right.</p>
+
+      <div class="typewriter">
+        <div class="cursor" aria-hidden="true">▌</div>
+        <p id="type-text" class="type-text" aria-live="polite"></p>
+      </div>
     </header>
 
-    <section class="commitments">
-      <h2>Things I'm committing to</h2>
-      <ul>
-        <li>Actively listen before reacting</li>
-        <li>Take a 10-second timeout when I'm heated</li>
-        <li>Say sorry sooner and mean it</li>
-        <li>Make it up to you in ways that matter to you ❤️</li>
-      </ul>
+    <!-- Envelope: tap to open -->
+    <section class="envelope-section">
+      <div class="envelope" id="envelope" role="button" aria-pressed="false" tabindex="0">
+        <div class="flap"></div>
+        <div class="body">
+          <div class="letter">
+            <h3>Dear Cherry,</h3>
+            <p class="handwritten">I am so sorry for losing my cool. You mean the world to me and I was foolish to let my frustration take over. I promise to listen better, to pause, and to love you more every day. Please accept this little note and let me make it up to you — with all my heart.</p>
+            <p class="xoxo">— vansh</p>
+          </div>
+        </div>
+      </div>
+      <p class="hint">Tap the envelope to open my secret note</p>
     </section>
 
-    <section class="forgive">
-      <h2>Forgive me (pick any)</h2>
-      <div class="options">
-        <button data-option="hug">🤗 Hug me</button>
-        <button data-option="dinner">🍽️ Let me cook dinner</button>
-        <button data-option="movie">🎬 Movie night</button>
-        <button data-option="talk">🗣️ Sit & talk</button>
-        <button data-option="time">⏳ Time & space</button>
-        <button data-option="instant">💖 Forgive instantly</button>
+    <!-- Memories button & hidden polaroid gallery -->
+    <section class="memories">
+      <button id="mem-btn" class="mem-btn">✨ Tap for Our Favorite Memories ✈️💖</button>
+
+      <div id="gallery" class="gallery" aria-hidden="true">
+        <!-- REPLACE IMAGE URL HERE -->
+        <figure class="polaroid"><img src="" alt="Memory 1"><figcaption>Memory 1</figcaption></figure>
+        <!-- REPLACE IMAGE URL HERE -->
+        <figure class="polaroid"><img src="" alt="Memory 2"><figcaption>Memory 2</figcaption></figure>
+        <!-- REPLACE IMAGE URL HERE -->
+        <figure class="polaroid"><img src="" alt="Memory 3"><figcaption>Memory 3</figcaption></figure>
+        <!-- REPLACE IMAGE URL HERE -->
+        <figure class="polaroid"><img src="" alt="Memory 4"><figcaption>Memory 4</figcaption></figure>
       </div>
     </section>
 
-    <section class="result" id="result" aria-live="polite"></section>
+    <!-- Persistent No Button Game -->
+    <section class="forgive-game">
+      <h2>Will you forgive your silly Vansh? 🥺</h2>
+      <div class="game-area">
+        <button id="yes-btn" class="yes">YES!</button>
+        <button id="no-btn" class="no">No</button>
+      </div>
+    </section>
 
-    <footer class="foot">
-      <p>If none of this fits yet, I understand. I'll be here, working on being better.</p>
-      <p class="sign">— vansh ❤️</p>
-    </footer>
+    <!-- Modal -->
+    <div id="modal" class="modal" aria-hidden="true">
+      <div class="modal-inner">
+        <h3>Yay! Apology accepted!</h3>
+        <p>Sending you endless hugs, kisses, and sweet treats! 🫂💋🍰</p>
+        <button id="close-modal">Close</button>
+      </div>
+    </div>
+
+    <footer class="foot">If you need time, I'll wait. I'll show it with actions. — vansh ❤️</footer>
   </main>
 
-  <script src="/script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
