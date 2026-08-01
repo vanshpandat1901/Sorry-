@@ -1,4 +1,4 @@
-// script: typewriter, envelope, gallery, no-button, confetti hearts, particles
+// script: typewriter, envelope, gallery, two YES buttons both trigger confetti + modal, particles
 (function(){
   // Typewriter effect
   const text = `Dear Cherry,\n\nI am so sorry for letting my anger take over. You mean everything to me — my safe place, my joy, my favorite person. I was foolish and I regret hurting you. I promise to pause, to listen, to learn, and to love you better every single day. Please forgive me and let me show you how much you mean to me.\n\n— vansh`;
@@ -32,45 +32,25 @@
     memBtn.animate([{transform:'scale(1)'},{transform:'scale(1.04)'},{transform:'scale(1)'}],{duration:350});
   });
 
-  // No-button dodge
-  const noBtn = document.getElementById('no-btn');
-  const yesBtn = document.getElementById('yes-btn');
-  let moving=false;
-  function moveNoBtnAway(e){
-    const bounds = noBtn.getBoundingClientRect();
-    const x = (e.touches? e.touches[0].clientX : e.clientX);
-    const y = (e.touches? e.touches[0].clientY : e.clientY);
-    const dx = x - (bounds.left + bounds.width/2);
-    const dy = y - (bounds.top + bounds.height/2);
-    const dist = Math.hypot(dx,dy);
-    if(dist < 130 && !moving){
-      moving=true;
-      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-      const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-      const newLeft = Math.random()*(vw-120);
-      const newTop = Math.random()*(vh-180);
-      noBtn.style.position='fixed';
-      noBtn.style.left = newLeft + 'px';
-      noBtn.style.top = newTop + 'px';
-      setTimeout(()=>{ moving=false; }, 450);
-    }
-  }
-  document.addEventListener('mousemove', moveNoBtnAway);
-  document.addEventListener('touchstart', moveNoBtnAway);
-
-  // YES button: confetti hearts & modal
+  // YES buttons: both trigger same behavior
+  const yesButtons = document.querySelectorAll('.yes');
   const modal = document.getElementById('modal');
-  const closeModal = document.getElementById('close-modal');
-  yesBtn.addEventListener('click', ()=>{
-    // save acceptance
-    localStorage.setItem('cherry_forgave','true');
-    showModal();
-    burstHearts();
-  });
-  closeModal.addEventListener('click', ()=>{ hideModal(); });
+  const closeModalBtn = document.getElementById('close-modal');
 
   function showModal(){ modal.classList.add('show'); modal.setAttribute('aria-hidden','false'); }
   function hideModal(){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); }
+
+  yesButtons.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      localStorage.setItem('cherry_forgave','true');
+      showModal();
+      burstHearts();
+      // small pop animation
+      btn.animate([{transform:'scale(1)'},{transform:'scale(1.06)'},{transform:'scale(1)'}],{duration:200});
+    });
+  });
+
+  closeModalBtn.addEventListener('click', ()=>{ hideModal(); });
 
   // Burst heart confetti (DOM hearts)
   function burstHearts(){
